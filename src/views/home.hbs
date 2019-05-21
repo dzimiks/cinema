@@ -1,0 +1,185 @@
+<div class="container h-100 mb-4 pt-5">
+	<div class="d-flex justify-content-center h-100">
+		<div class="searchbar">
+			<input class="search_input typeahead" type="text" name="search_input" id="search_input"
+				   placeholder="Search..." data-provide="typeahead" autocomplete="off">
+			<a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+		</div>
+
+		<!--<form class="searchbar">-->
+		<!--<div class="input-group">-->
+		<!--<input type="text" class="form-control typeahead search_input" name="search_input" id="search_inp3ut"-->
+		<!--placeholder="Search..." data-provide="typeahead" autocomplete="off">-->
+		<!--<div class="input-group-append">-->
+		<!--<button type="submit" class="btn btn-outline-primary">-->
+		<!--<i class="fas fa-search"></i>-->
+		<!--</button>-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</form>-->
+	</div>
+</div>
+
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-4">-->
+<!--<img src="https://picsum.photos/200/150/?random" class="img-fluid">-->
+<!--</div>-->
+<!--<div class="col-8">-->
+<!--<h3>Movie title</h3>-->
+<!--<p class="small">Genre | 60 min</p>-->
+<!--<p>Description</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr>-->
+<!--</div>-->
+
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovieModal">
+				Add movie
+			</button>
+		</div>
+	</div>
+
+	<div class="row row-eq-height">
+		{{#each movies}}
+			<div class="col-sm-6 col-md-4 col-lg-4 mt-4">
+				<div class="card w-100">
+					<a href="/movies/{{this.url}}">
+						<img class="card-img-top" src="https://picsum.photos/200/150/?random">
+					</a>
+					<div class="card-body">
+						<h4 class="card-title mt-3">{{this.title}}</h4>
+						<div class="meta">
+							<a>Friends</a>
+						</div>
+						<div class="card-text cut-text">
+							<p class="movie-description">{{this.description}}</p>
+							<div class="read-more"></div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<!--<button class="btn btn-success btn-sm">Ok</button>-->
+						<a href="/edit-movie/{{this._id}}">
+							<button class="btn btn-warning btn-sm">Edit</button>
+						</a>
+						<a href="/delete-movie/{{this._id}}">
+							<button class="btn btn-danger btn-sm delete-movie-btn">Delete</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</div>
+
+<!-- Add movie modal -->
+<div class="modal fade" id="addMovieModal" tabindex="-1" role="dialog" aria-labelledby="addMovieModalTitle"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Add movie</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form class="mt-4 mx-auto" action="/add-movie" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="movieTitle">Title</label>
+							<input type="text" class="form-control" id="movieTitle" name="movieTitle"
+								   placeholder="Title">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="movieGenre">Genre</label>
+							<select id="movieGenre" name="movieGenre" class="form-control">
+								<option selected>Choose...</option>
+								<option>Action</option>
+								<option>Thriller</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="movieDescription">Description</label>
+						<textarea class="form-control" rows="5" id="movieDescription" name="movieDescription"
+								  placeholder="Description..."></textarea>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-10">
+							<label for="movieActors">Actors</label>
+							<input type="text" class="form-control" id="movieActors" name="movieActors"
+								   placeholder="Actors...">
+						</div>
+						<div class="form-group col-md-2">
+							<label for="movieDuration">Duration</label>
+							<input type="number" class="form-control" id="movieDuration" name="movieDuration">
+						</div>
+					</div>
+					<div class="mt-4 text-center">
+						<button type="submit" class="btn btn-success">Add movie</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Edit movie modal -->
+<!--<div class="modal fade" id="editMovieModal" tabindex="-1" role="dialog" aria-labelledby="editMovieModalTitle"-->
+<!--aria-hidden="true">-->
+<!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<h5 class="modal-title">Add movie</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<form class="mt-4 mx-auto" action="/edit-movie/id" method="post">-->
+<!--<div class="form-row">-->
+<!--<div class="form-group col-md-6">-->
+<!--<label for="movieTitle">Title</label>-->
+<!--<input type="text" class="form-control" id="movieTitle" name="movieTitle"-->
+<!--placeholder="Title">-->
+<!--</div>-->
+<!--<div class="form-group col-md-6">-->
+<!--<label for="movieGenre">Genre</label>-->
+<!--<select id="movieGenre" name="movieGenre" class="form-control">-->
+<!--<option selected>Choose...</option>-->
+<!--<option>Action</option>-->
+<!--<option>Thriller</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label for="movieDescription">Description</label>-->
+<!--<textarea class="form-control" rows="5" id="movieDescription" name="movieDescription"-->
+<!--placeholder="Description..."></textarea>-->
+<!--</div>-->
+<!--<div class="form-row">-->
+<!--<div class="form-group col-md-10">-->
+<!--<label for="movieActors">Actors</label>-->
+<!--<input type="text" class="form-control" id="movieActors" name="movieActors"-->
+<!--placeholder="Actors...">-->
+<!--</div>-->
+<!--<div class="form-group col-md-2">-->
+<!--<label for="movieDuration">Duration</label>-->
+<!--<input type="number" class="form-control" id="movieDuration" name="movieDuration">-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="mt-4 text-center">-->
+<!--<button type="submit" class="btn btn-success">Add movie</button>-->
+<!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
