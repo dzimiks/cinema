@@ -16,39 +16,47 @@ router.get('/', moviesController.getMovies);
 
 /**
  * @swagger
- * definition:
+ * definitions:
  *   Movie:
- *     type: object
  *     properties:
- *       url: string
- *       title: string
- *       genre: string
- *       description: string
- *       actors: array
- *       duration: number
+ *       url:
+ *         type: string
+ *       title:
+ *         type: string
+ *       genre:
+ *         type: string
+ *       description:
+ *         type: string
+ *       actors:
+ *         type: array
+ *       duration:
+ *         type: integer
  */
+
 /**
  * @swagger
- * definition:
+ * definitions:
  *   User:
- *     type: object
  *     properties:
  *       first_name:
  *         type: string
  *       last_name:
- *         type: integer
- *       email:
  *         type: string
+ *       email:
+ *         type: integer
  *       username:
  *         type: string
  *       password:
  *         type: string
  *         format: password
- *		 role: Role
- *		 isBanned: boolean
- *		 banHistory: array
- *		 status: status
- *		 reservationNumber:number
+ *       isBanned:
+ *         type: boolean
+ *       banHistory:
+ *         type: array
+ *       status:
+ *         type: Status
+ *       reservationNubmer:
+ *         type: integer
  *       required:
  *         - email
  *         - username

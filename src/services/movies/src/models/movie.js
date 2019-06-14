@@ -2,19 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-/**
- * @swagger
- * definition:
- *   Movie:
- *     type: object
- *     properties:
- *       url: string
- *       title: string
- *       genre: string
- *       description: string
- *       actors: array
- *       duration: number
- */
 const movieSchema = new Schema({
 	url: String,
 	title: String,
