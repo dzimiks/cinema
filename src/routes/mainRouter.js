@@ -16,6 +16,47 @@ router.get('/', moviesController.getMovies);
 
 /**
  * @swagger
+ * definitions:
+ *   Movie:
+ *     type: object
+ *     properties:
+ *       url: string
+ *       title: string
+ *       genre: string
+ *       description: string
+ *       actors: array
+ *       duration: number
+ */
+/**
+ * @swagger
+ * definitions:
+ *   User:
+ *     type: object
+ *     properties:
+ *       first_name:
+ *         type: string
+ *       last_name:
+ *         type: integer
+ *       email:
+ *         type: string
+ *       username:
+ *         type: string
+ *       password:
+ *         type: string
+ *         format: password
+ *		 role: Role
+ *		 isBanned: boolean
+ *		 banHistory: array
+ *		 status: status
+ *		 reservationNumber:number
+ *       required:
+ *         - email
+ *         - username
+ *         - password
+ */
+
+/**
+ * @swagger
  * /movies/url:
  *   get:
  *     tags:
@@ -27,7 +68,7 @@ router.get('/', moviesController.getMovies);
  *       200:
  *         description: A single movie object
  *         schema:
- *           $ref: '#/definitions/Movie'
+ *           $ref: '/definitions/Movie'
  */
 router.get('/movies/:url', moviesController.getMovie);
 
