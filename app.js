@@ -14,8 +14,8 @@ const sassMiddleware = require('node-sass-middleware');
 // mongoose.connect(dbURI);
 
 // Initializing mongo and passport
-require('./src/services/movies/models/db');
-require('./src/services/users/models/db');
+require('./src/services/movies/src/models/db');
+require('./src/services/users/src/models/db');
 
 // Setting routers
 const mainRouter = require('./src/routes/mainRouter');

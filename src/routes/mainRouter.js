@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const moviesController = require('../services/movies/controllers/moviesController');
-const usersController = require('../services/users/controllers/usersController');
+const moviesController = require('../services/movies/src/controllers/moviesController');
+const usersController = require('../services/users/src/controllers/usersController');
 
 // Setting layout for all "user" requests to main layout, and passing control to next handler
 router.all('/*', function (req, res, next) {
