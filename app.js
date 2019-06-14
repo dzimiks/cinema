@@ -10,9 +10,9 @@ const swaggerUi = require('swagger-ui-express');
 
 // Initializing mongo and passport
 
-require('./src/services/movies/src/models/db');
-require('./src/services/reservations/src/models/db');
-require('./src/services/users/src/models/db');
+// require('./src/services/movies/src/models/db');
+// require('./src/services/reservations/src/models/db');
+// require('./src/services/users/src/models/db');
 
 
 // Setting routers

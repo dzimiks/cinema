@@ -81,7 +81,7 @@ router.get('/', moviesController.getMovies);
  *       200:
  *         description: A single movie object
  *         schema:
- *           $ref: '/definitions/Movie'
+ *           $ref: '#/definitions/Movie'
  */
 router.get('/movies/:url', moviesController.getMovie);
 
