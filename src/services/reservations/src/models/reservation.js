@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const reservationSchema = new Schema({
 	projection: {
 		type: mongoose.Schema.Types.ObjectId,

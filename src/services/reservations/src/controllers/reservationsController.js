@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const Reservation = mongoose.model('Reservation');
 const Projection = require('../../../movies/src/models/projection');
@@ -22,8 +23,13 @@ module.exports.getAllReservations = (req, res) => {
 };
 
 module.exports.makeReservation = (req, res) => {
+	let startTime = req.body.reservationStartTime;
+	startTime = startTime.split(' ');
+	startTime = moment(startTime[0] + startTime[1].substring(0, startTime[1].length - 2), 'YYYY-MM-DD HH:mm:ss').toDate();
+	console.log(startTime);
+
 	const projection = new Projection({
-		startTime: req.body.reservationStartTime,
+		startTime: startTime,
 		numberOfReservations: req.body.numberOfReservations
 	});
 
@@ -31,6 +37,14 @@ module.exports.makeReservation = (req, res) => {
 		projection: projection,
 		numberOfSeats: req.body.numberOfSeats,
 		price: req.body.reservationPrice
+	});
+
+	projection.save((err) => {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log("Projection is saved to database!");
+		}
 	});
 
 	reservation.save((err) => {
@@ -45,6 +59,6 @@ module.exports.makeReservation = (req, res) => {
 		meta: {
 			title: 'Reservation'
 		},
-		data: JSON.stringify(req.body, null, 4)
+		data: startTime
 	});
 };

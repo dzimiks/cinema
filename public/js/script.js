@@ -101,4 +101,23 @@ $(document).ready(function () {
 			});
 		}
 	}, 'json');
+
+	$.get("/api/reservations", (data) => {
+		if ($('#reservations-table').length) {
+			let reservations = data;
+			let final = [];
+
+			for (let reservation of reservations) {
+				final.push([
+					reservation.numberOfSeats,
+					reservation.price
+				]);
+			}
+
+			$('#reservations-table').DataTable({
+				responsive: true,
+				data: final
+			});
+		}
+	}, 'json');
 });
