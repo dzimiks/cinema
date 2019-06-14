@@ -11,87 +11,64 @@ router.all('/*', function (req, res, next) {
 });
 
 // GET movies
-/**
- * @swagger
- * /:
- *   get:
- *    tags:
- *        - Movies
- *     description: Returns all movies
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: An array of movies
- */
+
 router.get('/', moviesController.getMovies);
 
 /**
  * @swagger
- * /movies/name:
+ * /movies/url:
  *   get:
  *     tags:
- *       - Movies
- *     name: Find movie
- *     summary: Finds a movie
+ *       - movies
+ *     description: Returns one movie
  *     produces:
  *       - application/json
- *     parameters:
- *       - in: query
- *         name: name
- *         schema:
- *           type: string
- *         required:
- *           - name
  *     responses:
- *       '200':
+ *       200:
  *         description: A single movie object
+ *         schema:
+ *           $ref: '#/definitions/Movie'
  */
 router.get('/movies/:url', moviesController.getMovie);
 
 /**
  * @swagger
  * /edit-movie/id:
- *   put:
+ *   get:
  *     tags:
- *       - Movies
- *     name: Edit movie
- *     summary: Edit a movie
+ *       - movies
+ *     description: Edit movie
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Movie edited
+ *         schema:
+ *           $ref: '#/definitions/Movie'
+ */
+router.get('/edit-movie/:id', moviesController.editMovie);
+
+
+/**
+ * @swagger
+ * /delete-movie/id:
+ *   delete:
+ *     tags:
+ *       - movies
+ *     description: Deletes a single movie
  *     produces:
  *       - application/json
  *     parameters:
  *       - name: id
- *         in: body
- *         schema:
- *           type: string
- *         required:
- *           - id
+ *         description: movie's id
+ *         in: path
+ *         required: true
+ *         type: string
  *     responses:
- *       '200':
- *         description: Edited movie
- */
-router.get('/edit-movie/:id', moviesController.editMovie);
-
-/**
- * @swagger
- * /movies/name:
- *   put:
- *     tags:
- *       - Movies
- *     name: Delete movie
- *     summary: Deletes a movie
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: query
- *         name: id
+ *       200:
+ *         description: Successfully deleted
  *         schema:
- *           type: string
- *         required:
- *           - id
- *     responses:
- *       '200':
- *         description: Deleted movie
+ *           $ref: '#/definitions/Movie'
  */
 router.get('/delete-movie/:id', moviesController.deleteMovie);
 
@@ -101,36 +78,17 @@ router.get('/delete-movie/:id', moviesController.deleteMovie);
 /**
  * @swagger
  * /signin:
- *   post:
+ *   get:
  *     tags:
- *       - Users
- *     name: Login
- *     summary: Logs in a user
+ *       - users
+ *     description: Returns user
  *     produces:
  *       - application/json
- *     consumes:
- *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
- *         schema:
- *           type: object
- *           properties:
- *             username:
- *               type: string
- *             password:
- *               type: string
- *               format: password
- *         required:
- *           - username
- *           - password
  *     responses:
- *       '200':
+ *       200:
  *         description: User found and logged in successfully
- *       '401':
- *         description: Bad username, not found in db
- *       '403':
- *         description: Username and password don't match
+ *         schema:
+ *           $ref: '#/definitions/User'
  */
 router.get('/signin', usersController.signin);
 
@@ -139,78 +97,37 @@ router.get('/signin', usersController.signin);
  * /signup:
  *   post:
  *     tags:
- *       - Users
- *     name: Register
- *     summary: Register a new user
- *     consumes:
- *       - application/json
+ *       - users
+ *     description: Creates a new user
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: body
+ *       - name: user
+ *         description: user object
  *         in: body
+ *         required: true
  *         schema:
- *           type: object
- *           properties:
- *             first_name:
- *               type: string
- *             last_name:
- *               type: string
- *             username:
- *               type: string
- *             email:
- *               type: string
- *             password:
- *               type: string
- *               format: password
- *         required:
- *           - username
- *           - email
- *           - password
+ *           $ref: '#/definitions/User'
  *     responses:
- *       '200':
- *         description: User created
- *       '403':
- *         description: Username or email already taken
+ *       200:
+ *         description: Successfully created
  */
 router.get('/signup', usersController.signup);
 
 /**
  * @swagger
  * /profile:
- *   post:
+ *   get:
  *     tags:
- *       - Users
- *     name: Profile
- *     summary: User profile
- *     consumes:
- *       - application/json
+ *       - users
+ *     description: Returns user's profile
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
- *         schema:
- *           type: object
- *           properties:
- *             first_name:
- *               type: string
- *             last_name:
- *               type: string
- *             username:
- *               type: string
- *             email:
- *               type: string
- *             password:
- *               type: string
- *               format: password
- *         required:
- *           - username
- *           - email
- *           - password
  *     responses:
- *       '200':
- *         description: User profile
+ *       200:
+ *         description: User's profile loaded
+ *         schema:
+ *           $ref: '#/definitions/User'
  */
 router.get('/profile', usersController.profile);
 
@@ -220,94 +137,93 @@ router.get('/profile', usersController.profile);
  * @swagger
  * /api/movies:
  *   get:
- *    tags:
- *        - Movies
+ *     tags:
+ *       - movies
  *     description: Returns all movies
  *     produces:
  *       - application/json
  *     responses:
  *       200:
  *         description: An array of movies
+ *         schema:
+ *           $ref: '#/definitions/Movie'
  */
 router.get('/api/movies', moviesController.getAllMovies);
+
+// /**
+//  * @swagger
+//  * /api/users:
+//  *   get:
+//  *    tags:
+//  *        - Users
+//  *     description: Returns all users
+//  *     produces:
+//  *       - application/json
+//  *     responses:
+//  *       200:
+//  *         description: An array of users
+//  */
 
 /**
  * @swagger
  * /api/users:
  *   get:
- *    tags:
- *        - Users
+ *     tags:
+ *       - users
  *     description: Returns all users
  *     produces:
  *       - application/json
  *     responses:
  *       200:
  *         description: An array of users
+ *         schema:
+ *           $ref: '#/definitions/User'
  */
 router.get('/api/users', usersController.getAllUsers);
 
 // POST
+
 /**
  * @swagger
  * /add-movie:
  *   post:
  *     tags:
- *       - Movies
- *     name: Add movie
- *     summary: Add new movie
+ *       - movies
+ *     description: Creates a new user
  *     produces:
  *       - application/json
- *     consumes:
- *       - application/json
  *     parameters:
- *       - name: body
+ *       - name: movie
+ *         description: movie object
  *         in: body
+ *         required: true
  *         schema:
- *           type: object
- *     properties:
- *       url: string
- *       title: string
- *       genre: string
- *       description: string
- *       actors: array
- *       duration: number
+ *           $ref: '#/definitions/Movie'
  *     responses:
- *       '200':
+ *       200:
  *         description: Movie successfully added
  */
 router.post('/add-movie', moviesController.addMovie);
+
 /**
  * @swagger
  * /add-user:
  *   post:
  *     tags:
- *       - Users
- *     name: Add user
- *     summary: Add new user
+ *       - users
+ *     description: Creates a new user
  *     produces:
  *       - application/json
- *     consumes:
- *       - application/json
  *     parameters:
- *       - name: body
+ *       - name: user
+ *         description: user object
  *         in: body
+ *         required: true
  *         schema:
- *           type: object
- *         properties:
- *           first_name:
- *             type: string
- *           last_name:
- *             type: string
- *           username:
- *             type: string
- *           email:
- *             type: string
- *           password:
- *             type: string
- *             format: password
+ *           $ref: '#/definitions/User'
  *     responses:
- *       '200':
- *         description: User successfully addedgit
+ *       200:
+ *         description: Successfully created
  */
 router.post('/add-user', usersController.addUser);
 
