@@ -1,28 +1,30 @@
 {
-	"name": "cinema",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"start": "node ./bin/www"
-	},
-	"dependencies": {
-		"connect-mongo": "^2.0.3",
-		"cookie-parser": "~1.4.4",
-		"debug": "~2.6.9",
-		"express": "~4.16.1",
-		"express-handlebars": "^3.1.0",
-		"express-session": "^1.16.1",
-		"hbs": "~4.0.4",
-		"http-errors": "~1.6.3",
-		"moment": "^2.24.0",
-		"mongoose": "^5.5.10",
-		"morgan": "~1.9.1",
-		"node-sass-middleware": "0.11.0",
-		"request": "^2.88.0"
-	},
-	"devDependencies": {
-		"gulp": "^3.9.1",
-		"gulp-nodemon": "^2.2.1",
-		"gulp-sass": "^3.1.0"
-	}
+  "name": "cinema",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.1",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "moment": "^2.24.0",
+    "mongoose": "^5.5.10",
+    "morgan": "~1.9.1",
+    "node-sass-middleware": "0.11.0",
+    "request": "^2.88.0",
+    "swagger-jsdoc": "^1.3.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^3.1.0"
+  }
+
 }

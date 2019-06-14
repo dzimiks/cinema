@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+
+/**
+ * @swagger
+ * definitions:
+ *   Projection:
+ *     type: object
+ *     properties:
+ *       movie: Movie
+ *       startTime: Date
+ *       room : Room
+ *       price : number
+ *       statu : string
+ *       numberOfReservations : number
+ */
 const projectionSchema = new Schema({
 	movie: {
 		type: mongoose.Schema.Types.ObjectId,
