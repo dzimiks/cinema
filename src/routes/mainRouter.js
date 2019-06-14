@@ -16,7 +16,7 @@ router.get('/', moviesController.getMovies);
 
 /**
  * @swagger
- * definitions:
+ * definition:
  *   Movie:
  *     type: object
  *     properties:
@@ -29,7 +29,7 @@ router.get('/', moviesController.getMovies);
  */
 /**
  * @swagger
- * definitions:
+ * definition:
  *   User:
  *     type: object
  *     properties:

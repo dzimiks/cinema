@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 /**
  * @swagger
- * definitions:
+ * definition:
  *   User:
  *     type: object
  *     properties:

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 /**
  * @swagger
- * definitions:
+ * definition:
  *   Projection:
  *     type: object
  *     properties:
