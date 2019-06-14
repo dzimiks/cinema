@@ -6,16 +6,9 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const exphbs = require('express-handlebars');
 
-// const mongoose = require('mongoose');
-// const session = require('express-session');
-// const MongoStore = require('connect-mongo')(session);
-
-// Connecting to mongo
-// const dbURI = process.env.MONGO_URL || 'mongodb://localhost/cinema_movies';
-// mongoose.connect(dbURI);
-
 // Initializing mongo and passport
 require('./src/services/movies/src/models/db');
+require('./src/services/reservations/src/models/db');
 require('./src/services/users/src/models/db');
 
 // Setting routers

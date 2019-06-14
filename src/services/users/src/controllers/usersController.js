@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const request = require('request');
 
 module.exports.getUsers = (req, res) => {
 	const query = User.find({}, (err, docs) => {
@@ -110,11 +111,14 @@ module.exports.profile = (req, res) => {
 			console.log(err);
 		}
 
-		res.render('user-profile', {
-			meta: {
-				title: 'Users'
-			},
-			user: user
+		request('http://localhost:3000/api/users', (err, req, data) => {
+			res.render('user-profile', {
+				meta: {
+					title: 'Users'
+				},
+				user: user,
+				users: data
+			});
 		});
 	});
 };

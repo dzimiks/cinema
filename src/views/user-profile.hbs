@@ -106,7 +106,7 @@
 									<div class="col-sm-8">
 										<select id="userIsBanned" class="form-control">
 											<option selected>{{user.isBanned}}</option>
-											{{#ifEquals user.isBanned True}}
+											{{#ifEquals user.isBanned true}}
 												<option>false</option>
 											{{else}}
 												<option>true</option>
@@ -135,6 +135,29 @@
 									</div>
 								</div>
 							</form>
+						</div>
+
+						<div class="col-12 mb-4">
+							<h3 class="text-center">All users</h3>
+							<div class="table-responsive">
+								<table id="users-table" class="table table-striped table-bordered">
+									<thead>
+									<tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Email</th>
+										<th>Password</th>
+										<th>Role</th>
+										<th>Status</th>
+										<th>Is Banned</th>
+										<th>Ban History</th>
+										<th>Reservation Number</th>
+									</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

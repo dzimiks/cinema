@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const Projection = mongoose.model('Projection');
 const Schema = mongoose.Schema;
 
 const reservationSchema = new Schema({
-	projection: Projection,
-	user: User,
+	projection: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Projection'
+	},
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	numberOfSeats: Number,
 	price: Number
 });

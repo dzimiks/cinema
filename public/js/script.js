@@ -31,7 +31,7 @@ $(document).ready(function () {
 	// 	});
 	// });
 
-	$.get("/api/movies", function (data) {
+	$.get("/api/movies", (data) => {
 		$("#search_input").typeahead({
 			source: data,
 			displayText: (item) => {
@@ -53,5 +53,30 @@ $(document).ready(function () {
 			},
 			items: 4
 		});
+	}, 'json');
+
+	$.get("/api/users", (data) => {
+		if ($('#users-table').length) {
+			let users = data;
+			let final = [];
+
+			for (let user of users) {
+				final.push([
+					user.firstName,
+					user.lastName,
+					user.email,
+					user.password,
+					user.role.name,
+					user.status.name,
+					user.isBanned,
+					user.banHistory,
+					user.reservationNumber
+				]);
+			}
+
+			$('#users-table').DataTable({
+				data: final
+			});
+		}
 	}, 'json');
 });
