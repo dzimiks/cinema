@@ -1,10 +1,10 @@
 <div class="container h-100">
 	<div class="row align-items-center" style="min-height: 100vh;">
 		<div class="col-12">
-			<div class="card">
+			<div class="card p-5">
 				<div class="card-body">
 					<div class="row">
-						<div class="col-md-4 col-12 text-center">
+						<div class="col-md-4 col-12 text-center mb-4">
 							<div class="profile_img">
 								<img class="img-fluid avatar-view rounded-circle mb-3" src="images/dzimiks.jpg"
 									 alt="dzimiks"
@@ -30,50 +30,108 @@
 							</ul>
 						</div>
 
-						<div class="col-md-8 col-12">
+						<div class="col-md-8 col-12 mb-4">
 							<form>
 								<div class="form-group row">
-									<label for="userFirstName" class="col-sm-2 col-form-label">First Name:</label>
-									<div class="col-sm-10">
+									<label for="userFirstName" class="col-sm-4 col-form-label">First Name:</label>
+									<div class="col-sm-8">
 										<input type="text" class="form-control" id="userFirstName"
 											   placeholder="First Name" value="{{user.firstName}}">
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label for="userLastName" class="col-sm-2 col-form-label">Last Name:</label>
-									<div class="col-sm-10">
+									<label for="userLastName" class="col-sm-4 col-form-label">Last Name:</label>
+									<div class="col-sm-8">
 										<input type="text" class="form-control" id="userLastName"
 											   placeholder="Last Name" value="{{user.lastName}}">
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label for="userEmail" class="col-sm-2 col-form-label">Email:</label>
-									<div class="col-sm-10">
+									<label for="userEmail" class="col-sm-4 col-form-label">Email:</label>
+									<div class="col-sm-8">
 										<input type="text" readonly class="form-control-plaintext" id="userEmail"
 											   value="{{user.email}}">
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label for="userPassword" class="col-sm-2 col-form-label">Password</label>
-									<div class="col-sm-10">
+									<label for="userPassword" class="col-sm-4 col-form-label">Password</label>
+									<div class="col-sm-8">
 										<input type="password" class="form-control" id="userPassword"
-											   placeholder="Password">
+											   placeholder="Password" value="{{user.password}}">
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label for="userRole" class="col-sm-2 col-form-label">Role:</label>
-									<div class="col-sm-10">
+									<label for="userRole" class="col-sm-4 col-form-label">Role:</label>
+									<div class="col-sm-8">
 										<select id="userRole" class="form-control">
 											<option selected>{{user.role.name}}</option>
-											{{#if user.role.name}}
+											{{#ifEquals user.role.name 'admin'}}
 												<option>user</option>
-											{{/if}}
-											<option>admin</option>
+											{{else}}
+												<option>admin</option>
+											{{/ifEquals}}
 										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userStatus" class="col-sm-4 col-form-label">Status:</label>
+									<div class="col-sm-8">
+										<select id="userStatus" class="form-control">
+											<option selected>{{user.status.name}}</option>
+											{{#ifEquals user.status.name 'REGULAR'}}
+												<option>GOLD</option>
+												<option>DIAMOND</option>
+											{{/ifEquals}}
+
+											{{#ifEquals user.status.name 'GOLD'}}
+												<option>REGULAR</option>
+												<option>DIAMOND</option>
+											{{/ifEquals}}
+
+											{{#ifEquals user.status.name 'DIAMOND'}}
+												<option>REGULAR</option>
+												<option>GOLD</option>
+											{{/ifEquals}}
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userIsBanned" class="col-sm-4 col-form-label">Is Banned:</label>
+									<div class="col-sm-8">
+										<select id="userIsBanned" class="form-control">
+											<option selected>{{user.isBanned}}</option>
+											{{#ifEquals user.isBanned True}}
+												<option>false</option>
+											{{else}}
+												<option>true</option>
+											{{/ifEquals}}
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userBanHistory" class="col-sm-4 col-form-label">Ban History:</label>
+									<div class="col-sm-8">
+										<textarea class="form-control" id="userBanHistory" rows="2">
+											{{#each user.banHistory}}
+												Date: {{formatDate this}},
+											{{/each}}
+										</textarea>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userReservationNumber" class="col-sm-4 col-form-label">Reservation
+										Number:</label>
+									<div class="col-sm-8">
+										<input type="number" class="form-control-plaintext" id="userReservationNumber"
+											   value="{{user.reservationNumber}}">
 									</div>
 								</div>
 							</form>

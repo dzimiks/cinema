@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
+const exphbs = require('express-handlebars');
 
 // const mongoose = require('mongoose');
 // const session = require('express-session');
@@ -22,8 +23,18 @@ const mainRouter = require('./src/routes/mainRouter');
 
 const app = express();
 
+// Handlebars
+let hbsHelper = require('./src/helpers/helpers.js');
+
 // view engine setup
+
 app.set('views', path.join(__dirname, 'src', 'views'));
+
+app.engine('hbs', exphbs({
+	layoutsDir: path.join(__dirname, 'src', 'views'),
+	extname: '.hbs',
+	helpers: hbsHelper.helpers
+}));
 app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
@@ -39,15 +50,6 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mainRouter);
-
-// Session and user management
-// app.use(session({
-// 	secret: 'dzimiks',
-// 	resave: false,
-// 	saveUninitialized: false,
-// 	store: new MongoStore({mongooseConnection: mongoose.connection}),
-// 	cookie: {maxAge: 14 * 24 * 60 * 60 * 1000}
-// }));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
