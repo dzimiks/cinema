@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const request = require('request');
+const axios = require('axios');
 
 module.exports.getUsers = (req, res) => {
 	const query = User.find({}, (err, docs) => {
@@ -81,6 +81,26 @@ module.exports.addUser = (req, res) => {
 	});
 };
 
+module.exports.editUser = (req, res) => {
+	User.findOneAndUpdate({'_id': req.params.id}, {username: 'Edited username'}, {upsert: true}, (err) => {
+		if (err) {
+			return res.send(500, {error: err});
+		}
+
+		return res.send("Successfully edited user!");
+	});
+};
+
+module.exports.deleteUser = (req, res) => {
+	User.deleteOne({'_id': req.params.id}, (err) => {
+		if (err) {
+			return res.send(500, {error: err});
+		}
+
+		return res.send("Successfully deleted user!");
+	});
+};
+
 module.exports.signin = (req, res) => {
 	res.render('signin', {
 		meta: {
@@ -111,14 +131,16 @@ module.exports.profile = (req, res) => {
 			console.log(err);
 		}
 
-		request('http://localhost:3000/api/users', (err, req, data) => {
-			res.render('user-profile', {
-				meta: {
-					title: 'Users'
-				},
-				user: user,
-				users: data
-			});
-		});
+		axios.get('http://localhost:3000/api/users')
+			.then((err, req, data) => {
+				res.render('user-profile', {
+					meta: {
+						title: 'Users'
+					},
+					user: user,
+					users: data
+				});
+			})
+		;
 	});
 };

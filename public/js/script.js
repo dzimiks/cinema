@@ -53,6 +53,26 @@ $(document).ready(function () {
 			},
 			items: 4
 		});
+
+		if ($('#movies-table').length) {
+			let movies = data;
+			let final = [];
+
+			for (let movie of movies) {
+				final.push([
+					movie.title,
+					movie.description,
+					movie.genre.toLowerCase(),
+					movie.duration,
+					movie.actors
+				]);
+			}
+
+			$('#movies-table').DataTable({
+				responsive: true,
+				data: final
+			});
+		}
 	}, 'json');
 
 	$.get("/api/users", (data) => {
@@ -66,6 +86,7 @@ $(document).ready(function () {
 					user.lastName,
 					user.email,
 					user.password,
+					user.username,
 					user.role.name,
 					user.status.name,
 					user.isBanned,
@@ -75,6 +96,7 @@ $(document).ready(function () {
 			}
 
 			$('#users-table').DataTable({
+				responsive: true,
 				data: final
 			});
 		}

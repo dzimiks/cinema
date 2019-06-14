@@ -41,6 +41,10 @@
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovieModal">
 				Add movie
 			</button>
+
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#makeReservationModal">
+				Make reservation
+			</button>
 		</div>
 	</div>
 
@@ -183,3 +187,60 @@
 <!--</div>-->
 <!--</div>-->
 <!--</div>-->
+
+<!-- Add movie modal -->
+<div class="modal fade" id="makeReservationModal" tabindex="-1" role="dialog"
+	 aria-labelledby="makeReservationModalTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Make reservation</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form class="mt-4 mx-auto" action="/make-reservation" method="post">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="reservationMovieTitle">Movie Title</label>
+							<input type="text" class="form-control" id="reservationMovieTitle"
+								   name="reservationMovieTitle" placeholder="Title">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="reservationStartTime">Start Time</label>
+							<select id="reservationStartTime" name="reservationStartTime" class="form-control">
+								<option selected>12.05.2019. 14h</option>
+								<option>12.05.2019. 16h</option>
+								<option>12.05.2019. 18h</option>
+								<option>12.05.2019. 20h</option>
+								<option>13.05.2019. 09h</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<label for="reservationPrice">Price</label>
+							<input type="number" class="form-control" readonly id="reservationPrice"
+								   name="reservationPrice" value="120">
+						</div>
+						<div class="form-group col-md-5">
+							<label for="numberOfReservations">Number of Reservations</label>
+							<input type="number" class="form-control" id="numberOfReservations"
+								   name="numberOfReservations" value="1">
+						</div>
+						<div class="form-group col-md-5">
+							<label for="numberOfSeats">Number of Seats</label>
+							<input type="number" class="form-control" id="numberOfSeats"
+								   name="numberOfSeats" value="1">
+						</div>
+					</div>
+					<div class="mt-4 text-center">
+						<button type="submit" class="btn btn-success">Make reservation</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
