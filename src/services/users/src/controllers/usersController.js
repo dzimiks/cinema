@@ -95,3 +95,26 @@ module.exports.signup = (req, res) => {
 		}
 	});
 };
+
+module.exports.profile = (req, res) => {
+	const query = User.findOne({email: 'vana997@gmail.com'}, (err, docs) => {
+		if (!err) {
+			console.log('User found!');
+		} else {
+			throw err;
+		}
+	});
+
+	query.exec((err, user) => {
+		if (err) {
+			console.log(err);
+		}
+
+		res.render('user-profile', {
+			meta: {
+				title: 'Users'
+			},
+			user: user
+		});
+	});
+};

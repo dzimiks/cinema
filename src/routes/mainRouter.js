@@ -10,13 +10,16 @@ router.all('/*', function (req, res, next) {
 	next();
 });
 
-// GET
+// GET movies
 router.get('/', moviesController.getMovies);
 router.get('/movies/:url', moviesController.getMovie);
 router.get('/edit-movie/:id', moviesController.editMovie);
 router.get('/delete-movie/:id', moviesController.deleteMovie);
+
+// GET users
 router.get('/signin', usersController.signin);
 router.get('/signup', usersController.signup);
+router.get('/profile', usersController.profile);
 
 // API
 router.get('/api/movies', moviesController.getAllMovies);

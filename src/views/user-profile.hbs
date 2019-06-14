@@ -1,0 +1,86 @@
+<div class="container h-100">
+	<div class="row align-items-center" style="min-height: 100vh;">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-4 col-12 text-center">
+							<div class="profile_img">
+								<img class="img-fluid avatar-view rounded-circle mb-3" src="images/dzimiks.jpg"
+									 alt="dzimiks"
+									 style="max-height: 200px;">
+							</div>
+
+							<h2>dzimiks</h2>
+
+							<ul class="list-unstyled user_data">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>
+									Belgrade, Serbia
+								</li>
+
+								<li>
+									<i class="fas fa-briefcase"></i> Software Engineer
+								</li>
+
+								<li>
+									<i class="fa fa-globe"></i>
+									<a href="https://www.dzimiks.com" target="_blank">www.dzimiks.com</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="col-md-8 col-12">
+							<form>
+								<div class="form-group row">
+									<label for="userFirstName" class="col-sm-2 col-form-label">First Name:</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="userFirstName"
+											   placeholder="First Name" value="{{user.firstName}}">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userLastName" class="col-sm-2 col-form-label">Last Name:</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="userLastName"
+											   placeholder="Last Name" value="{{user.lastName}}">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userEmail" class="col-sm-2 col-form-label">Email:</label>
+									<div class="col-sm-10">
+										<input type="text" readonly class="form-control-plaintext" id="userEmail"
+											   value="{{user.email}}">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userPassword" class="col-sm-2 col-form-label">Password</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control" id="userPassword"
+											   placeholder="Password">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="userRole" class="col-sm-2 col-form-label">Role:</label>
+									<div class="col-sm-10">
+										<select id="userRole" class="form-control">
+											<option selected>{{user.role.name}}</option>
+											{{#if user.role.name}}
+												<option>user</option>
+											{{/if}}
+											<option>admin</option>
+										</select>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
